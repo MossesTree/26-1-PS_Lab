@@ -133,11 +133,23 @@ void findClasses(char* name, struct st_class* c[], int csize){
 int addNewClass(struct st_class* c[], int csize){
 // Caution : Don't allow the duplicate class code.
 // You must complete this function.
-
+    if(csize >= 50){
+        printf("Class list is Maximize.\n");
+        return csize;
+    }
 	struct st_class* p = (struct st_class*)malloc(sizeof(struct st_class));
 
 	printf(">> code number > ");
 	scanf("%d", &(p->code));
+    
+    for(int i=0; i<csize;i++){
+        if(c[i]->code == p->code){
+            printf("Class list already have this code.\n");
+            free(p);
+            return csize;
+        }
+    }
+
 	printf(">> class name > ");
 	scanf("%s", p->name);
 	printf(">> credits > ");
