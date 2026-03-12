@@ -141,7 +141,7 @@ int addNewClass(struct st_class* c[], int csize){
 
 	printf(">> code number > ");
 	scanf("%d", &(p->code));
-    
+
     for(int i=0; i<csize;i++){
         if(c[i]->code == p->code){
             printf("Class list already have this code.\n");
@@ -167,11 +167,14 @@ void editClass(struct st_class* c[], int csize){
 	printf(">> Enter a code of class > ");
 	scanf("%d", &code);
 
-	
+    for(int i=0;i<csize;i++){
+        if(c[i]->code == code){
+            p = c[i];
+        }
+    }
 	// You must complete this section.
 
 
-	
 	printf("> Current: [%d] %s [credits %d - %s]\n",p->code, p->name, p->unit, kname[p->grading-1]);
 	printf("> Enter new class name > ");
 	scanf("%s", p->name);
