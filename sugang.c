@@ -172,8 +172,6 @@ void editClass(struct st_class* c[], int csize){
             p = c[i];
         }
     }
-	// You must complete this section.
-
 
 	printf("> Current: [%d] %s [credits %d - %s]\n",p->code, p->name, p->unit, kname[p->grading-1]);
 	printf("> Enter new class name > ");
@@ -191,11 +189,37 @@ void editClass(struct st_class* c[], int csize){
 // You must make all these functions.
 
 int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
+    int c_code, addMore;
+    if(msize>=10)
+        return msize;
 
+    printf(">> Enter a class code > ");
+    scanf("%d",&c_code);
 
+    for(int i=0;i<csize;i++){
+        if(c_code == c[i]){
+            printf("[%d] %s [credit %d - %s]\n",c[i]->code,c[i]->name,c[i]->unit,(c[i]->grading==1)?"A+~F":"P/F");
+            for(int j=0;j<msize;j++){
+                if(c_code == my[j]){
+                    printf("You already have this class.\n");
+                    break;
+                }
+            }
+            my[msize] = c_code;
+            msize = msize + 1;
+            break;
+        }
+        if(i==csize-1)
+            printf("No such code of class.\n");
+    }
 
-	
-	return 0;
+    printf("Add more? 1:Yes 2: No");
+    scanf("%d",&addMore);
+
+    if(addMore==1){
+        return applyMyClasses(my,msize,c,csize);
+    }
+    else return msize;
 }
 
 void printMyClasses(int my[], int msize, struct st_class* c[], int csize){
