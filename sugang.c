@@ -197,7 +197,7 @@ int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
     scanf("%d",&c_code);
 
     for(int i=0;i<csize;i++){
-        if(c_code == c[i]){
+        if(c_code == c[i]->code){
             printf("[%d] %s [credit %d - %s]\n",c[i]->code,c[i]->name,c[i]->unit,(c[i]->grading==1)?"A+~F":"P/F");
             for(int j=0;j<msize;j++){
                 if(c_code == my[j]){
