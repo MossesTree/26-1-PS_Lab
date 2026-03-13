@@ -213,7 +213,7 @@ int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
             printf("No such code of class.\n");
     }
 
-    printf("Add more? 1:Yes 2: No");
+    printf("Add more? 1:Yes 2: No > ");
     scanf("%d",&addMore);
 
     if(addMore==1){
@@ -223,10 +223,15 @@ int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
 }
 
 void printMyClasses(int my[], int msize, struct st_class* c[], int csize){
-
-
-	
-
+    if(msize==0){
+        printf("no class\n");
+    }
+    for(int i=0; i<msize; i++){
+        for(int j=0; j<csize; j++){
+            if(c[j]->code==my[i])
+                printf("[%d] %s [credit %d - %s]\n",c[i]->code, c[i]->name, c[i]->unit, kname[c[i]->grading-1]);
+        }
+	}
 }
 
 void saveMyClass(int my[], int msize, struct st_class* c[], int csize){
