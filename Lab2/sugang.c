@@ -198,7 +198,7 @@ int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
 
     for(int i=0;i<csize;i++){
         if(c_code == c[i]->code){
-            printf("[%d] %s [credit %d - %s]\n",c[i]->code,c[i]->name,c[i]->unit,(c[i]->grading==1)?"A+~F":"P/F");
+            printf("[%d] %s [credit %d - %s]\n",c[i]->code,c[i]->name,c[i]->unit,kname[c[i]->grading-1]);
             for(int j=0;j<msize;j++){
                 if(c_code == my[j]){
                     printf("You already have this class.\n");
@@ -229,14 +229,28 @@ void printMyClasses(int my[], int msize, struct st_class* c[], int csize){
     for(int i=0; i<msize; i++){
         for(int j=0; j<csize; j++){
             if(c[j]->code==my[i])
-                printf("[%d] %s [credit %d - %s]\n",c[i]->code, c[i]->name, c[i]->unit, kname[c[i]->grading-1]);
+                printf("[%d] %s [credit %d - %s]\n",c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading-1]);
         }
 	}
 }
 
 void saveMyClass(int my[], int msize, struct st_class* c[], int csize){
+    FILE* file = fopen("my_classes.txt", "w");
+    
+    if(file == NULL){
+        printf("> Error: Cannot open my_classes.txt to save.\n");
+        return;
+    }
 
-
-
-	
+    // 내가 신청한 과목의 코드번호들을 텍스트 파일에 저장
+    for(int i=0; i<msize; i++){
+        for(int j=0; j<csize; j++){
+            if(c[j]->code==my[i]){
+                fprintf(file, "[%d] %s [credit %d - %s]\n",c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading-1]);
+            }
+        }
+    }
+    
+    fclose(file);
 }
+	
