@@ -7,5 +7,4 @@ struct st_class{
 	int grading;	// grading (1:A+~F, 2:P/F)
 };
 
-
-char kname[2][10]; // String for grading
+extern char kname[2][10]; // String for grading

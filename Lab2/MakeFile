@@ -11,3 +11,4 @@ userClasses.o: userClasses.c userClasses.h
 
 clean:
 	rm *.o main
+	rm my_classes.txt
