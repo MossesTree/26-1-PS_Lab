@@ -1,0 +1,13 @@
+CC = gcc
+
+main: main.c classes.o userClasses.o
+	$(CC) -o $@ $^
+
+classes.o: classes.c classes.h
+	$(CC) -c classes.c
+
+userClasses.o: userClasses.c userClasses.h
+	$(CC) -c userClasses.c
+
+clean:
+	rm *.o main
